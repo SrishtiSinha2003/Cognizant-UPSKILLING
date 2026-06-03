@@ -1,0 +1,346 @@
+/* ============================================================
+   styles.css – Local Community Event Portal
+   CSS3 Exercises stylesheet
+   ============================================================ */
+
+
+/* ── Exercise 1 & 3: Universal selector reset ── */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* ── Exercise 5: Font family (Google Font imported via <link>) ── */
+body {
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    color: #333333;
+    line-height: 1.6;
+    padding: 20px 40px;
+}
+
+
+/* ── Exercise 1 & 3: ID selector – main banner heading ── */
+#mainHeader {
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+    /* color is set inline (red) in the HTML as Exercise 1 demo */
+}
+
+
+/* ── Exercise 3: Element selector – all h2 headings ── */
+h2 {
+    color: #1a5276;
+    font-size: 1.3rem;
+    margin: 20px 0 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+
+/* ── Exercise 3: Grouping selector – h3 and p together ── */
+h3,
+p {
+    margin-bottom: 8px;
+}
+
+
+/* ── Exercise 3 & 8: Class selector – event card container ── */
+.eventCard {
+    border: 1px solid #aab7c4;
+    border-radius: 6px;
+    padding: 16px 20px;
+    margin: 12px 0;
+    background-color: #ffffff;
+    /* outline shown on focus via form fields – see input:focus below */
+}
+
+
+/* ── Exercise 2: Style for main CTA button ── */
+.cta-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 22px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    font-family: 'Poppins', sans-serif;
+    display: inline-block;
+    text-decoration: none;
+}
+
+.cta-button:hover {
+    background-color: #0056b3;
+}
+
+
+/* ── Exercise 4: Section header with linear-gradient ── */
+.section-header {
+    background: linear-gradient(to right, #1a5276, #2e86c1);
+    color: #ffffff;
+    padding: 14px 20px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 5px;
+    margin: 12px 0;
+    /* RGBA used for subtle text shadow */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+}
+
+
+/* ── Exercise 4: Body background with fallback color ── */
+/* (background-color fallback set in embedded <style>; image below) */
+body {
+    background-image: url('https://www.transparenttextures.com/patterns/cubes.png');
+    background-color: #f0f4f8; /* fallback if image fails */
+    background-repeat: repeat;
+}
+
+
+/* ── Exercise 5: Typography – description paragraph ── */
+.description {
+    font-size: 1rem;
+    font-style: italic;
+    font-weight: 400;
+    text-align: justify;
+    text-transform: none;
+    letter-spacing: 0.03em;
+    line-height: 1.8;
+    color: #4a4a4a;
+    max-width: 700px;
+    margin-bottom: 12px;
+}
+
+.intro {
+    font-size: 1.05rem;
+    color: #555;
+    margin-top: 6px;
+    margin-bottom: 16px;
+}
+
+
+/* ── Exercise 6: Link pseudo-classes ── */
+a:link {
+    color: #007bff;
+    text-decoration: none;
+}
+
+a:visited {
+    color: #6f42c1;
+}
+
+a:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
+
+a:active {
+    color: #c0392b;
+}
+
+
+/* ── Exercise 6: Nav menu – remove bullets, display inline ── */
+.nav-menu {
+    list-style-type: none;
+    padding: 0;
+    margin: 10px 0 16px;
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.nav-menu li a {
+    font-weight: 600;
+    font-size: 0.95rem;
+    padding: 6px 10px;
+    border-radius: 4px;
+    background-color: #eaf0fb;
+}
+
+.nav-menu li a:hover {
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+}
+
+
+/* ── Exercise 6: Styled event list ── */
+.event-list {
+    list-style-type: disc;
+    list-style-position: inside;
+    padding-left: 10px;
+    margin: 10px 0;
+}
+
+.event-list li {
+    padding: 4px 0;
+    margin-bottom: 4px;
+    color: #2c3e50;
+}
+
+
+/* ── Exercise 7: Table styling ── */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0;
+    font-size: 0.95rem;
+}
+
+th {
+    background-color: #1a5276;
+    color: #ffffff;
+    padding: 10px 14px;
+    text-align: center;
+    font-weight: 600;
+}
+
+td {
+    padding: 10px 14px;
+    text-align: center;
+    border: 1px solid #d5d8dc;
+}
+
+/* Zebra striping – nth-child(even) */
+tbody tr:nth-child(even) {
+    background-color: #eaf0fb;
+}
+
+tbody tr:nth-child(odd) {
+    background-color: #ffffff;
+}
+
+tbody tr:hover {
+    background-color: #d6eaf8;
+}
+
+
+/* ── Exercise 8: Form input with outline on focus ── */
+input[type="text"],
+input[type="email"] {
+    padding: 8px 12px;
+    border: 1px solid #aab7c4;
+    border-radius: 4px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.95rem;
+    width: 280px;
+    margin-top: 4px;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus {
+    outline: 3px solid #007bff;
+    border-color: #007bff;
+}
+
+form {
+    margin: 14px 0;
+}
+
+label {
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+
+/* ── Exercise 9: Multi-column news article ── */
+.news-article {
+    column-count: 2;
+    column-gap: 30px;
+    column-rule: 1px solid gray;
+    text-align: justify;
+    margin: 14px 0;
+    font-size: 0.95rem;
+    line-height: 1.7;
+}
+
+
+/* ── Exercise 10: Flexbox for responsive cards ── */
+.flex-cards {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin: 14px 0;
+}
+
+.flex-cards .eventCard {
+    flex: 1 1 200px;
+}
+
+
+/* ── Exercise 11: Footer note ── */
+.footer-note {
+    text-align: center;
+    color: #888;
+    font-size: 0.85rem;
+    margin-top: 20px;
+    padding-top: 10px;
+    border-top: 1px solid #ddd;
+}
+
+hr {
+    border: none;
+    border-top: 1px solid #d5d8dc;
+    margin: 24px 0;
+}
+
+kbd {
+    background: #eee;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    padding: 1px 5px;
+    font-size: 0.85rem;
+}
+
+
+/* ── Exercise 10: Media query – screens below 768px ── */
+@media (max-width: 768px) {
+
+    body {
+        padding: 14px 16px;
+        font-size: 14px;
+    }
+
+    #mainHeader {
+        font-size: 1.4rem;
+    }
+
+    h2 {
+        font-size: 1.1rem;
+    }
+
+    /* Stack nav links vertically */
+    .nav-menu {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    /* Single column on small screens */
+    .news-article {
+        column-count: 1;
+    }
+
+    /* Stack flex cards */
+    .flex-cards {
+        flex-direction: column;
+    }
+
+    table {
+        font-size: 0.8rem;
+    }
+
+    th,
+    td {
+        padding: 7px 8px;
+    }
+
+    input[type="text"],
+    input[type="email"] {
+        width: 100%;
+    }
+}
