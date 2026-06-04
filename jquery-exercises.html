@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>jQuery Exercises</title>
+
+  <!--
+    Exercise 1 – Method 1: CDN link
+    Exercise 1 – Method 2: local copy would be:
+    <script src="jquery-3.7.1.min.js"></script>
+  -->
+  <link rel="stylesheet" href="styles.css"/>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+  <style>
+    body  { font-family: Arial, sans-serif; margin: 20px 40px; background: #f9f9f9; }
+    h2    { border-bottom: 1px solid #ccc; padding-bottom: 4px; margin-top: 36px; }
+    hr    { margin: 28px 0; }
+
+    /* Ex 3 */
+    .box {
+      width: 180px;
+      height: 60px;
+      background: #1a73e8;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 5px;
+      margin: 6px 0;
+    }
+
+    /* Ex 4 */
+    #itemList { margin-top: 10px; padding-left: 20px; }
+    #itemList li { margin: 4px 0; }
+
+    /* Ex 5 */
+    #colorBox {
+      width: 200px;
+      height: 100px;
+      background: white;
+      border: 2px solid #333;
+      border-radius: 5px;
+      margin-top: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Ex 6 */
+    #hoverDiv {
+      width: 240px;
+      padding: 16px;
+      background: #e8f0fe;
+      border: 1px solid #aaa;
+      border-radius: 5px;
+      margin: 8px 0;
+      text-align: center;
+    }
+
+    button {
+      margin: 4px 4px 4px 0;
+      padding: 6px 14px;
+      border: none;
+      border-radius: 4px;
+      background: #1a73e8;
+      color: white;
+      cursor: pointer;
+    }
+    input[type="text"] {
+      padding: 6px;
+      border: 1px solid #aaa;
+      border-radius: 4px;
+      width: 220px;
+    }
+  </style>
+</head>
+<body>
+
+<h1>jQuery Exercises</h1>
+
+<hr/>
+
+<!-- Exercise 1 -->
+<h2>Exercise 1 – jQuery Library Inclusion</h2>
+<p>jQuery is included via CDN (see &lt;head&gt;). For a local copy the tag would be:<br/>
+<code>&lt;script src="jquery-3.7.1.min.js"&gt;&lt;/script&gt;</code></p>
+<p id="helloWorld">Hello World!</p>
+<!-- Bonus: logged in console via the script below -->
+
+<hr/>
+
+<!-- Exercise 2 -->
+<h2>Exercise 2 – The $() Function</h2>
+<h1 id="mainHeading">Original Heading</h1>
+<p id="para1">This is paragraph one.</p>
+<p id="para2">This is paragraph two – click the button to hide me.</p>
+<button id="hideBtn">Hide Paragraph 2</button>
+
+<hr/>
+
+<!-- Exercise 3 -->
+<h2>Exercise 3 – jQuery Methods</h2>
+<div class="box" id="box1">Box 1</div>
+<div class="box" id="box2">Box 2</div>
+<div class="box" id="box3">Box 3</div>
+
+<br/>
+<button id="hideBox">Hide Box 1</button>
+<button id="showBox">Show Box 1</button>
+<button id="fadeOutBox">Fade Out Box 2</button>
+<button id="fadeInBox">Fade In Box 2</button>
+<button id="toggleBox">Toggle Box 3</button>
+<button id="slideBtn">Slide Up → Delay → Slide Down Box 1</button>
+
+<hr/>
+
+<!-- Exercise 4 -->
+<h2>Exercise 4 – DOM Manipulation</h2>
+<input type="text" id="itemInput" placeholder="Enter item name"/>
+<button id="addItem">Add Item</button>
+<button id="removeAll">Remove All</button>
+<ul id="itemList"></ul>
+
+<hr/>
+
+<!-- Exercise 5 -->
+<h2>Exercise 5 – Working with Events</h2>
+<button id="colorBtn">Click – Turn Red</button>
+<div id="colorBox">Double-click to reset</div>
+
+<hr/>
+
+<!-- Exercise 6 -->
+<h2>Exercise 6 – Event Helpers</h2>
+<div id="hoverDiv">Hover over me / click me</div>
+<p id="eventLog" style="color:#555; font-size:0.9rem;">Event log will appear here.</p>
+
+<input type="text" id="keyInput" placeholder="Type something here..."/>
+<p id="keyLog" style="color:#555; font-size:0.9rem;"></p>
+
+<script>
+$(document).ready(function () {
+
+  /* ── Exercise 1 Bonus: log Hello World ── */
+  console.log($("#helloWorld").text());
+
+
+  /* ── Exercise 2 ── */
+  // Change h1 text
+  $("#mainHeading").text("Welcome to the Community Portal");
+
+  // Hide para2 on button click
+  $("#hideBtn").click(function () {
+    $("#para2").hide();
+  });
+
+
+  /* ── Exercise 3 ── */
+  $("#hideBox").click(function ()    { $("#box1").hide(); });
+  $("#showBox").click(function ()    { $("#box1").show(); });
+  $("#fadeOutBox").click(function () { $("#box2").fadeOut(600); });
+  $("#fadeInBox").click(function ()  { $("#box2").fadeIn(600); });
+  $("#toggleBox").click(function ()  { $("#box3").toggle(); });
+
+  // Bonus: chain slideUp → delay → slideDown
+  $("#slideBtn").click(function () {
+    $("#box1").slideUp(500).delay(1000).slideDown(500);
+  });
+
+
+  /* ── Exercise 4 ── */
+  $("#addItem").click(function () {
+    var val = $("#itemInput").val().trim();
+    if (val === "") return;
+    var li = $("<li>").text(val);
+    $("#itemList").append(li);
+    $("#itemInput").val("").focus();
+  });
+
+  $("#removeAll").click(function () {
+    $("#itemList").empty();
+  });
+
+
+  /* ── Exercise 5 ── */
+  $("#colorBtn").click(function () {
+    $("#colorBox").css("background-color", "red").css("color", "white").text("Red!");
+  });
+
+  $("#colorBox").dblclick(function () {
+    $(this).css({ "background-color": "white", "color": "#222" }).text("Double-click to reset");
+  });
+
+
+  /* ── Exercise 6 ── */
+  var log = $("#eventLog");
+
+  $("#hoverDiv").click(function () {
+    $(this).css("background-color", "#c8e6c9");
+    log.text("click – background turned green.");
+  });
+
+  $("#hoverDiv").dblclick(function () {
+    $(this).css("background-color", "#ffccbc");
+    log.text("dblclick – background turned orange.");
+  });
+
+  $("#hoverDiv").mouseenter(function () {
+    $(this).css("border-color", "#1a73e8");
+    log.text("mouseenter – border highlighted.");
+  });
+
+  $("#hoverDiv").mouseleave(function () {
+    $(this).css("border-color", "#aaa");
+    log.text("mouseleave – border reset.");
+  });
+
+  $("#keyInput").keypress(function (e) {
+    $("#keyLog").text("keypress – key: '" + e.key + "'  |  typed so far: " + $(this).val());
+  });
+
+});
+</script>
+
+</body>
+</html>
