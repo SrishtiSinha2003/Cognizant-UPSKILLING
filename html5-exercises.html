@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Local Community Event Portal</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px 40px;
+      background-color: #f9f9f9;
+      color: #222;
+    }
+
+    h2 {
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 4px;
+      margin-top: 40px;
+    }
+
+    /* Exercise 3 */
+    #welcomeBanner {
+      background-color: #1a73e8;
+      color: white;
+      padding: 14px 20px;
+      border-radius: 5px;
+      margin-bottom: 10px;
+    }
+
+    .highlight {
+      background-color: #fff3cd;
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-weight: bold;
+    }
+
+    /* Exercise 4 */
+    .event-img {
+      width: 150px;
+      height: 100px;
+      border: 2px solid #555;
+      object-fit: cover;
+    }
+
+    table {
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+
+    td {
+      padding: 8px;
+      text-align: center;
+      font-size: 0.85rem;
+    }
+
+    /* Exercise 5 */
+    form label {
+      display: block;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    form input,
+    form select,
+    form textarea {
+      width: 300px;
+      padding: 6px;
+      margin-top: 4px;
+      border: 1px solid #aaa;
+      border-radius: 4px;
+      font-size: 0.95rem;
+    }
+
+    form button {
+      margin-top: 12px;
+      padding: 8px 20px;
+      background-color: #1a73e8;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.95rem;
+    }
+
+    output {
+      display: block;
+      margin-top: 10px;
+      color: green;
+      font-weight: bold;
+    }
+
+    /* Exercise 6 */
+    #phoneError {
+      color: red;
+      font-size: 0.85rem;
+    }
+
+    #feeDisplay {
+      margin-top: 6px;
+      color: #555;
+    }
+
+    #charCount {
+      font-size: 0.82rem;
+      color: #888;
+    }
+
+    /* Exercise 9 */
+    #locationResult {
+      margin-top: 10px;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Local Community Event Portal</h1>
+  <p>A portal for residents to register for events, check locations, and access basic services.</p>
+
+  <hr/>
+
+  <!-- ── Exercise 1: HTML5 Base Template ── -->
+  <h2>Exercise 1 – HTML5 Base Template</h2>
+  <p>This page itself demonstrates the base template: <code>&lt;!DOCTYPE html&gt;</code>, <code>&lt;html lang="en"&gt;</code>, <code>&lt;meta charset="UTF-8"&gt;</code>, and semantic sectioning. Open DevTools (F12) → Elements to inspect the document structure.</p>
+
+  <!-- ── Navigation ── -->
+  <nav>
+    <h2>Exercise 2 – Navigation and Linking</h2>
+    <a href="#events">Events</a> &nbsp;|&nbsp;
+    <a href="#contact">Contact</a> &nbsp;|&nbsp;
+    <a href="help.html" target="_blank">Help (opens new tab)</a>
+  </nav>
+
+  <!-- ── Main ── -->
+
+  <!-- Exercise 3 -->
+  <section>
+    <h2>Exercise 3 – Welcome Message with Styling and ID / Class</h2>
+
+    <div id="welcomeBanner">
+      Welcome back! You are registered for upcoming events.
+      <span style="color: #ffe082; font-weight: bold;"> Special Offer: Free entry this weekend!</span>
+    </div>
+
+    <p>Highlighted event: <span class="highlight">Annual Street Fair – 15 Aug</span></p>
+    <p>Highlighted event: <span class="highlight">Music Night – 5 Sep</span></p>
+  </section>
+
+  <!-- Exercise 4 -->
+  <section>
+    <h2>Exercise 4 – Image Gallery for Community Events</h2>
+
+    <table>
+      <tr>
+        <td>
+          <img
+            src="https://placehold.co/150x100/4361ee/fff?text=Street+Fair"
+            alt="Street Fair"
+            title="Annual Street Fair"
+            class="event-img"/>
+          <br/>Annual Street Fair
+        </td>
+        <td>
+          <img
+            src="https://placehold.co/150x100/2dc653/fff?text=Clean+Up"
+            alt="Clean-Up Drive"
+            title="Community Clean-Up Drive"
+            class="event-img"/>
+          <br/>Clean-Up Drive
+        </td>
+        <td>
+          <img
+            src="https://placehold.co/150x100/ef233c/fff?text=Music+Night"
+            alt="Music Night"
+            title="Music Night at Town Hall"
+            class="event-img"/>
+          <br/>Music Night
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <img
+            src="https://placehold.co/150x100/fb8500/fff?text=Food+Fest"
+            alt="Food Festival"
+            title="Food Festival"
+            class="event-img"/>
+          <br/>Food Festival
+        </td>
+        <td>
+          <img
+            src="https://placehold.co/150x100/8338ec/fff?text=Art+Show"
+            alt="Art Show"
+            title="Community Art Show"
+            class="event-img"/>
+          <br/>Community Art Show
+        </td>
+        <td>
+          <img
+            src="https://placehold.co/150x100/3a86ff/fff?text=Marathon"
+            alt="City Marathon"
+            title="City Marathon"
+            class="event-img"/>
+          <br/>City Marathon
+        </td>
+      </tr>
+    </table>
+  </section>
+
+  <!-- Exercise 5 -->
+  <section id="events">
+    <h2>Exercise 5 – Event Registration Form</h2>
+
+    <form id="registrationForm" onsubmit="handleSubmit(event)">
+
+      <label for="fullName">Full Name</label>
+      <input type="text" id="fullName" name="fullName"
+             placeholder="Enter your full name" required autofocus/>
+
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email"
+             placeholder="email@example.com" required/>
+
+      <label for="eventDate">Preferred Date</label>
+      <input type="date" id="eventDate" name="eventDate" required/>
+
+      <label for="eventType">Event Type</label>
+      <select id="eventType" name="eventType" required>
+        <option value="">-- Select Event --</option>
+        <option value="street-fair">Street Fair</option>
+        <option value="music-night">Music Night</option>
+        <option value="food-fest">Food Festival</option>
+        <option value="marathon">City Marathon</option>
+      </select>
+
+      <label for="message">Message (optional)</label>
+      <textarea id="message" name="message" rows="4"
+                placeholder="Any special requirements..."></textarea>
+
+      <button type="submit">Register</button>
+
+      <output id="formOutput"></output>
+    </form>
+  </section>
+
+  <!-- Exercise 6 -->
+  <section>
+    <h2>Exercise 6 – Event Feedback with Event Handling</h2>
+
+    <label for="phone">Phone Number</label>
+    <input type="text" id="phone" placeholder="10-digit number"
+           onblur="validatePhone(this)"/>
+    <span id="phoneError"></span>
+
+    <br/><br/>
+
+    <label for="eventDropdown">Select Event to see Fee</label>
+    <select id="eventDropdown" onchange="showFee(this)">
+      <option value="">-- Choose --</option>
+      <option value="0">Street Fair (Free)</option>
+      <option value="100">Music Night (₹100)</option>
+      <option value="50">Food Festival (₹50)</option>
+      <option value="200">City Marathon (₹200)</option>
+    </select>
+    <p id="feeDisplay"></p>
+
+    <br/>
+
+    <button onclick="showConfirmation()" ondblclick="alert('Already submitted!')">
+      Submit Feedback
+    </button>
+
+    <br/><br/>
+
+    <img
+      id="enlargeImg"
+      src="https://placehold.co/120x80/4361ee/fff?text=Event"
+      alt="Event preview"
+      title="Double-click to enlarge"
+      style="cursor:pointer; border: 2px solid #333;"
+      ondblclick="enlargeImage(this)"/>
+    <p><small>Double-click the image to enlarge it.</small></p>
+
+    <label for="feedback">Feedback</label>
+    <textarea id="feedback" rows="3" placeholder="Write your feedback..."
+              onkeyup="countChars(this)" style="width:300px"></textarea>
+    <p id="charCount">0 characters</p>
+  </section>
+
+  <!-- Exercise 7 -->
+  <section>
+    <h2>Exercise 7 – Video Invite with Media Events</h2>
+
+    <video
+      id="promoVideo"
+      width="400"
+      controls
+      oncanplay="document.getElementById('videoMsg').textContent = 'Video ready to play!'">
+      <source src="promo.mp4" type="video/mp4"/>
+      Your browser does not support the video tag.
+    </video>
+    <p id="videoMsg" style="color: green;"></p>
+    <p><small>Note: Replace <code>promo.mp4</code> with an actual video file to test.</small></p>
+  </section>
+
+  <!-- Exercise 8 -->
+  <section>
+    <h2>Exercise 8 – Saving User Preferences (localStorage)</h2>
+
+    <label for="prefEvent">Choose your preferred event type</label>
+    <select id="prefEvent" onchange="savePreference(this.value)">
+      <option value="">-- Select --</option>
+      <option value="street-fair">Street Fair</option>
+      <option value="music-night">Music Night</option>
+      <option value="food-fest">Food Festival</option>
+      <option value="marathon">City Marathon</option>
+    </select>
+
+    <p id="savedPref"></p>
+    <button onclick="clearPreferences()">Clear Preferences</button>
+  </section>
+
+  <!-- Exercise 9 -->
+  <section>
+    <h2>Exercise 9 – Geolocation for Event Mapping</h2>
+
+    <button onclick="findNearbyEvents()">Find Nearby Events</button>
+    <p id="locationResult"></p>
+  </section>
+
+  <!-- Exercise 10 -->
+  <section>
+    <h2>Exercise 10 – Debugging with Chrome DevTools</h2>
+    <p>Open Chrome DevTools (F12) to:</p>
+    <ul>
+      <li><strong>Elements</strong> – Inspect and live-edit styles</li>
+      <li><strong>Console</strong> – See logs printed by the scripts below</li>
+      <li><strong>Sources</strong> – Add breakpoints and step through JS</li>
+    </ul>
+    <button onclick="debugDemo()">Run Debug Demo</button>
+  </section>
+
+  <!-- Footer -->
+  <footer id="contact" style="margin-top:50px; border-top:1px solid #ccc; padding-top:14px; color:#555; font-size:0.9rem;">
+    <p>Contact: citycouncil@localportal.gov &nbsp;|&nbsp; Phone: 1800-000-0000</p>
+    <p>&copy; 2025 Local Community Event Portal</p>
+  </footer>
+
+  <script>
+    /* ── Exercise 5: Form submission ── */
+    function handleSubmit(e) {
+      e.preventDefault();
+      var name = document.getElementById('fullName').value;
+      var event = document.getElementById('eventType').value;
+      document.getElementById('formOutput').textContent =
+        'Thank you, ' + name + '! You are registered for: ' + event;
+    }
+
+    /* ── Exercise 6: Phone validation on blur ── */
+    function validatePhone(input) {
+      var errorEl = document.getElementById('phoneError');
+      if (!/^\d{10}$/.test(input.value)) {
+        errorEl.textContent = ' Invalid – must be 10 digits.';
+      } else {
+        errorEl.textContent = ' Valid phone number.';
+        errorEl.style.color = 'green';
+      }
+    }
+
+    /* ── Exercise 6: Show fee on dropdown change ── */
+    function showFee(select) {
+      var fee = select.value;
+      var display = document.getElementById('feeDisplay');
+      if (fee === '') {
+        display.textContent = '';
+      } else if (fee === '0') {
+        display.textContent = 'Entry Fee: Free';
+      } else {
+        display.textContent = 'Entry Fee: ₹' + fee;
+      }
+    }
+
+    /* ── Exercise 6: Submit button click ── */
+    function showConfirmation() {
+      alert('Feedback submitted. Thank you!');
+    }
+
+    /* ── Exercise 6: Double-click to enlarge image ── */
+    function enlargeImage(img) {
+      if (img.style.width === '240px') {
+        img.style.width = '120px';
+        img.style.height = '80px';
+      } else {
+        img.style.width = '240px';
+        img.style.height = '160px';
+      }
+    }
+
+    /* ── Exercise 6: Character count in textarea ── */
+    function countChars(textarea) {
+      document.getElementById('charCount').textContent =
+        textarea.value.length + ' characters';
+    }
+
+    /* ── Exercise 7: Warn before leaving page ── */
+    window.onbeforeunload = function () {
+      var feedback = document.getElementById('feedback').value;
+      if (feedback.trim() !== '') {
+        return 'You have unsaved feedback. Are you sure you want to leave?';
+      }
+    };
+
+    /* ── Exercise 8: Save preference to localStorage ── */
+    function savePreference(value) {
+      if (value) {
+        localStorage.setItem('preferredEvent', value);
+        sessionStorage.setItem('sessionEvent', value);
+        document.getElementById('savedPref').textContent =
+          'Preference saved: ' + value;
+      }
+    }
+
+    /* ── Exercise 8: Load saved preference on page load ── */
+    window.addEventListener('load', function () {
+      var saved = localStorage.getItem('preferredEvent');
+      if (saved) {
+        var sel = document.getElementById('prefEvent');
+        sel.value = saved;
+        document.getElementById('savedPref').textContent =
+          'Loaded preference: ' + saved;
+      }
+    });
+
+    /* ── Exercise 8: Clear preferences ── */
+    function clearPreferences() {
+      localStorage.clear();
+      sessionStorage.clear();
+      document.getElementById('prefEvent').value = '';
+      document.getElementById('savedPref').textContent =
+        'Preferences cleared.';
+    }
+
+    /* ── Exercise 9: Geolocation ── */
+    function findNearbyEvents() {
+      var result = document.getElementById('locationResult');
+      if (!navigator.geolocation) {
+        result.textContent = 'Geolocation is not supported by this browser.';
+        return;
+      }
+      result.textContent = 'Locating...';
+      navigator.geolocation.getCurrentPosition(
+        function (position) {
+          result.textContent =
+            'Your location – Latitude: ' +
+            position.coords.latitude.toFixed(4) +
+            ', Longitude: ' +
+            position.coords.longitude.toFixed(4);
+        },
+        function (error) {
+          switch (error.code) {
+            case error.PERMISSION_DENIED:
+              result.textContent = 'Error: Location permission denied.';
+              break;
+            case error.POSITION_UNAVAILABLE:
+              result.textContent = 'Error: Location information unavailable.';
+              break;
+            case error.TIMEOUT:
+              result.textContent = 'Error: Location request timed out.';
+              break;
+            default:
+              result.textContent = 'Error: Unable to get location.';
+          }
+        },
+        { enableHighAccuracy: true, timeout: 8000, maximumAge: 0 }
+      );
+    }
+
+    /* ── Exercise 10: Debug demo ── */
+    function debugDemo() {
+      var userName = 'Resident';
+      var eventCount = 3;
+      console.log('debugDemo() called');
+      console.log('User:', userName);
+      console.log('Events available:', eventCount);
+      // Add a breakpoint on the next line in DevTools → Sources
+      var total = eventCount * 2;
+      console.log('Total slots:', total);
+      alert('Check the Console tab in DevTools for debug output.');
+    }
+  </script>
+
+</body>
+</html>
