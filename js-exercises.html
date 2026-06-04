@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>JS Exercises – Community Event Portal</title>
+
+  <!-- jQuery (Exercise 14) -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px 40px; background: #f5f5f5; color: #222; }
+    h2   { border-bottom: 1px solid #ccc; padding-bottom: 4px; margin-top: 36px; }
+    hr   { margin: 28px 0; }
+
+    /* event cards */
+    .event-card {
+      background: #fff;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      padding: 12px 16px;
+      margin: 8px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .event-card button {
+      padding: 5px 14px;
+      background: #1a73e8;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .event-card button.cancel {
+      background: #d93025;
+    }
+    .seats { font-size: 0.85rem; color: #555; }
+
+    /* form */
+    form label  { display: block; margin-top: 10px; font-weight: bold; }
+    form input,
+    form select { width: 280px; padding: 6px; margin-top: 4px; border: 1px solid #aaa; border-radius: 4px; }
+    form button { margin-top: 12px; padding: 8px 20px; background: #1a73e8; color: #fff; border: none; border-radius: 4px; cursor: pointer; }
+    .err { color: red; font-size: 0.82rem; }
+    #formMsg { margin-top: 10px; font-weight: bold; }
+
+    /* misc */
+    #spinner   { display: none; color: #888; }
+    #asyncResult { margin-top: 8px; }
+    #searchBox { padding: 6px; width: 260px; border: 1px solid #aaa; border-radius: 4px; }
+    #categoryFilter { padding: 6px; border: 1px solid #aaa; border-radius: 4px; }
+  </style>
+</head>
+<body>
+
+<h1>Local Community Event Portal</h1>
+<p>JavaScript Exercises – all 14 exercises covered below.</p>
+
+<hr/>
+
+<!-- Ex 1 -->
+<h2>Exercise 1 – JavaScript Basics &amp; Setup</h2>
+<p>Open DevTools Console to see the welcome log and page-load alert.<br/>
+External script linked: <code>&lt;script src="main.js"&gt;&lt;/script&gt;</code></p>
+
+<hr/>
+
+<!-- Ex 2 -->
+<h2>Exercise 2 – Syntax, Data Types, and Operators</h2>
+<div id="ex2Output"></div>
+<button onclick="ex2Demo()">Run Demo</button>
+
+<hr/>
+
+<!-- Ex 3 -->
+<h2>Exercise 3 – Conditionals, Loops, and Error Handling</h2>
+<div id="ex3Output"></div>
+<button onclick="ex3Demo()">Show Valid Events</button>
+
+<hr/>
+
+<!-- Ex 4 -->
+<h2>Exercise 4 – Functions, Scope, Closures, Higher-Order Functions</h2>
+<div id="ex4Output"></div>
+<button onclick="ex4Demo()">Run Demo</button>
+
+<hr/>
+
+<!-- Ex 5 -->
+<h2>Exercise 5 – Objects and Prototypes</h2>
+<div id="ex5Output"></div>
+<button onclick="ex5Demo()">Run Demo</button>
+
+<hr/>
+
+<!-- Ex 6 -->
+<h2>Exercise 6 – Arrays and Methods</h2>
+<div id="ex6Output"></div>
+<button onclick="ex6Demo()">Run Demo</button>
+
+<hr/>
+
+<!-- Ex 7 & 8 -->
+<h2>Exercise 7 &amp; 8 – DOM Manipulation and Event Handling</h2>
+
+<label for="categoryFilter">Filter by category:</label>
+<select id="categoryFilter" onchange="filterByCategory()">
+  <option value="all">All</option>
+  <option value="music">Music</option>
+  <option value="food">Food</option>
+  <option value="sports">Sports</option>
+  <option value="workshop">Workshop</option>
+</select>
+
+&nbsp;&nbsp;
+<input type="text" id="searchBox" placeholder="Search events by name..." onkeydown="searchEvents(event)"/>
+
+<div id="eventList" style="margin-top:14px;"></div>
+
+<hr/>
+
+<!-- Ex 9 -->
+<h2>Exercise 9 – Async JS, Promises, Async/Await</h2>
+<button onclick="loadWithPromise()">Load with .then() / .catch()</button>
+&nbsp;
+<button onclick="loadWithAsync()">Load with async/await</button>
+<p id="spinner">Loading...</p>
+<div id="asyncResult"></div>
+
+<hr/>
+
+<!-- Ex 10 -->
+<h2>Exercise 10 – Modern JavaScript Features</h2>
+<div id="ex10Output"></div>
+<button onclick="ex10Demo()">Run Demo</button>
+
+<hr/>
+
+<!-- Ex 11 -->
+<h2>Exercise 11 – Working with Forms</h2>
+<form id="regForm" onsubmit="handleRegForm(event)">
+  <label for="regName">Full Name</label>
+  <input type="text" id="regName" name="regName"/>
+  <span class="err" id="nameErr"></span>
+
+  <label for="regEmail">Email</label>
+  <input type="email" id="regEmail" name="regEmail"/>
+  <span class="err" id="emailErr"></span>
+
+  <label for="regEvent">Select Event</label>
+  <select id="regEvent" name="regEvent">
+    <option value="">-- Choose --</option>
+    <option value="Street Fair">Street Fair</option>
+    <option value="Music Night">Music Night</option>
+    <option value="Food Festival">Food Festival</option>
+    <option value="City Marathon">City Marathon</option>
+  </select>
+  <span class="err" id="eventErr"></span>
+
+  <button type="submit">Register</button>
+</form>
+<p id="formMsg"></p>
+
+<hr/>
+
+<!-- Ex 12 -->
+<h2>Exercise 12 – AJAX &amp; Fetch API (POST)</h2>
+<button onclick="submitViaFetch()">Submit via Fetch (mock POST)</button>
+<p id="fetchMsg"></p>
+
+<hr/>
+
+<!-- Ex 13 -->
+<h2>Exercise 13 – Debugging and Testing</h2>
+<p>Steps to debug in Chrome DevTools:</p>
+<ul>
+  <li>Open <strong>Console</strong> tab – check logs from <code>main.js</code></li>
+  <li>Open <strong>Network</strong> tab – inspect the fetch request payload and response</li>
+  <li>Open <strong>Sources</strong> tab – set a breakpoint inside <code>handleRegForm()</code> and reload to watch variable values</li>
+</ul>
+<button onclick="debugStep()">Run Debug Step (check Console)</button>
+
+<hr/>
+
+<!-- Ex 14 -->
+<h2>Exercise 14 – jQuery and JS Frameworks</h2>
+<button id="registerBtn">Register (jQuery click)</button>
+<p id="jqMsg" style="display:none; color:green;">jQuery click handled!</p>
+
+<div id="jqCard" class="event-card" style="display:none; max-width:400px;">
+  <span>Street Fair – 15 Aug</span>
+  <span class="seats">Seats: 20</span>
+</div>
+<br/>
+<button onclick="$('#jqCard').fadeIn(500)">Fade In Card</button>
+&nbsp;
+<button onclick="$('#jqCard').fadeOut(500)">Fade Out Card</button>
+
+<p><strong>Benefit of React/Vue:</strong> Component-based architecture allows reusable UI pieces, making large apps easier to build and maintain compared to plain jQuery.</p>
+
+<!-- External JS (Exercise 1) -->
+<script src="main.js"></script>
+
+</body>
+</html>
